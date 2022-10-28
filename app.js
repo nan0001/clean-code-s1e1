@@ -10,7 +10,7 @@
 
 var taskInput=document.getElementById("new-task");//Add a new task.
 var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incompleteTasks");//ul of #incompleteTasks
+var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incompleteTasks
 var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
 
 
@@ -33,18 +33,21 @@ var createNewTaskElement=function(taskString){
     var deleteButtonImg=document.createElement("img");//delete button image
 
     label.innerText=taskString;
-    label.className='task';
+    label.className='list__task-label';
 
     //Each elements, needs appending
+    listItem.className = "list__item";
     checkBox.type="checkbox";
+    checkBox.className = "list__checkbox"
     editInput.type="text";
-    editInput.className="task";
+    editInput.className="list__task-input";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit";
+    editButton.className="list__edit-btn";
 
-    deleteButton.className="delete";
+    deleteButton.className="list__delete-btn";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.className ="list__delete-img"
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -82,10 +85,10 @@ var editTask=function(){
 
     var listItem=this.parentNode;
 
-    var editInput=listItem.querySelector('input[type=text]');
+    var editInput=listItem.querySelector('.list__task-input');
     var label=listItem.querySelector("label");
-    var editBtn=listItem.querySelector(".edit");
-    var containsClass=listItem.classList.contains("editMode");
+    var editBtn=listItem.querySelector(".list__edit-btn");
+    var containsClass=listItem.classList.contains("list__item_edit-mode");
     //If class of the parent is .editmode
     if(containsClass){
 
@@ -99,7 +102,7 @@ var editTask=function(){
     }
 
     //toggle .editmode on the parent.
-    listItem.classList.toggle("editMode");
+    listItem.classList.toggle("list__item_edit-mode");
 };
 
 
@@ -156,8 +159,8 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
     console.log("bind list item events");
 //select ListItems children
     var checkBox=taskListItem.querySelector("input[type=checkbox]");
-    var editButton=taskListItem.querySelector("button.edit");
-    var deleteButton=taskListItem.querySelector("button.delete");
+    var editButton=taskListItem.querySelector(".list__edit-btn");
+    var deleteButton=taskListItem.querySelector(".list__delete-btn");
 
 
     //Bind editTask to edit button.
@@ -193,3 +196,32 @@ for (var i=0; i<completedTasksHolder.children.length;i++){
 //prevent creation of empty tasks.
 
 //Change edit to save when you are in edit mode.
+
+// Comments for cross-check
+console.log("Выполнено полностью:", 
+"\n\nПравило '1.1 Отступы'",
+"\nПравило '1.2 Нижний регистр написания'",
+"\n***значения alt и value могут быть записаны с большой буквы, см. док с вопросами к заданию",
+"\nПравило '1.3 Кавычки в HTML/CSS документе'",
+"\nПравило '2.1 Форматирование'",
+"\nПравило '2.2 Тип документа / Document Type'",
+"\n***строка <!DOCTYPE html> добавлена http://htmlbook.ru/html/%21doctype",
+"\nПравило '2.3 Символы-мнемоники'",
+"\nПравило '2.4 Атрибут 'type''",
+"\n***из первого линка с подключением шрифтов тип также удален, потому что подключается файл CSS, см. док с вопросами к заданию",
+"\nПравило '3.1 Единый стиль именования селекторов (классов / id)'",
+"\nПравило '3.2 Значимые названия идентификаторов и классов'",
+"\nПравило '3.3 Лаконичность названий идентификаторов и классов'",
+"\nПравило '3.4 Теговые селекторы'",
+"\nПравило '3.5 Отступы в блоках'",
+"\nПравило '3.6 Пробел после названий свойств'",
+"\nПравило '3.7 Точка с запятой после свойств'",
+"\nПравило '3.8 Разделение селекторов и свойств'",
+"\nПравило '1.1 Семантика'",
+"\nПравило '1.2 Альтернатива для мультимедиа'",
+"\n***на мой взгляд все картинки в данном случае являются значимыми, а не декоративными",
+"\nПравило '2.1 БЭМ'",
+"\n***первый раз пользовалась именованием БЭМ, но очень старалась, если что-то не так, то прошу оставить комментарий (желательно с советом как было бы лучше сделать))",
+"\n\nФункционал работает исправно",
+"\nПожалуйста, разворачивайте названия коммитов полностью, в некоторых указано по два пункта правил"
+)
